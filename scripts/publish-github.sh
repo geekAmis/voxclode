@@ -61,6 +61,7 @@ git remote remove origin 2>/dev/null || true
 git remote add origin "https://github.com/$OWNER/$REPO.git"
 
 # Токен передаётся только в заголовке текущей команды и не сохраняется в .git/config.
-git -c http.extraheader="AUTHORIZATION: bearer $TOKEN" push -u origin main
+BASIC="$(printf 'x-access-token:%s' "$TOKEN" | base64 | tr -d '\n')"
+git -c http.extraheader="AUTHORIZATION: basic $BASIC" push -u origin main
 
 echo "Готово: https://github.com/$OWNER/$REPO"

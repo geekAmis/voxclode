@@ -62,6 +62,7 @@ if ($remotes -contains "origin") {
 git remote add origin "https://github.com/$owner/$RepoName.git"
 
 # Токен передаётся только в заголовке текущей команды и не сохраняется в .git/config.
-git -c http.extraheader="AUTHORIZATION: bearer $token" push -u origin main
+$basic = [Convert]::ToBase64String([Text.Encoding]::ASCII.GetBytes("x-access-token:$token"))
+git -c http.extraheader="AUTHORIZATION: basic $basic" push -u origin main
 
 Write-Host "Готово: https://github.com/$owner/$RepoName"
