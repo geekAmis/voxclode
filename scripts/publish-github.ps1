@@ -55,7 +55,10 @@ if ($staged) {
 }
 
 git branch -M main
-git remote remove origin 2>$null
+$remotes = git remote
+if ($remotes -contains "origin") {
+    git remote remove origin
+}
 git remote add origin "https://github.com/$owner/$RepoName.git"
 
 # Токен передаётся только в заголовке текущей команды и не сохраняется в .git/config.
