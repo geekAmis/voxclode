@@ -52,23 +52,39 @@ async def main() -> int:
         assert app._busy is False
         app.query_one("#prompt", TextArea).text = "Привет! Это мой голос, созданный нейросетью."
 
-        # Populate the player with the reference clip to verify waveform rendering.
-        app.player.load(root / "audio" / "reference_ru.wav")
-        wave = waveform_peaks(root / "audio" / "reference_ru.wav")
+        # Populate the player with a generated demo clip when no sample is present.
+        demo = root / ".cache" / "test" / "demo_player.wav"
+        reference = root / "audio" / "reference_ru.wav"
+        if reference.is_file():
+            player_path = reference
+        else:
+            import numpy as np
+            import soundfile as sf
+
+            demo.parent.mkdir(parents=True, exist_ok=True)
+            rate = 16000
+            timeline = np.linspace(0, 2.0, rate * 2, endpoint=False)
+            tone = 0.2 * np.sin(2 * np.pi * 440 * timeline)
+            sf.write(str(demo), tone, rate, subtype="PCM_16")
+            player_path = demo
+
+        app.player.load(player_path)
+        wave = waveform_peaks(player_path)
         app.query_one("#waveform").set_audio(wave.peaks, wave.duration)
         app.seek_ratio(0.5)
         await pilot.pause(0.2)
         print("seek 50%   :", app.player.position_ms, "ms")
-        assert 3800 < app.player.position_ms < 5200
+        assert wave.duration / 2 * 1000 - 500 < app.player.position_ms < wave.duration / 2 * 1000 + 700
         app.player.pause()
+        app._tick_player()
         app.query_one("#player-panel").display = True
         app.query_one("#track-title", Static).update(
-            f"result.wav · 16.0 kHz · {wave.duration:.2f} c · 271 КБ"
+            f"result.wav · 16.0 kHz · {wave.duration:.2f} c · 64 КБ"
         )
         app.query_one("#prompt-line", Static).update(
             "Промпт: Привет! Это мой голос, созданный нейросетью."
         )
-        app.query_one("#play-time", Static).update("00:00.00 / 00:08.68")
+
 
         app.query_one("#overall").update(progress=64)
         app.query_one("#stage-bar").update(progress=42)
@@ -76,16 +92,17 @@ async def main() -> int:
         app.query_one("#stage-label", Static).update("генерация речи · 42% · оценка")
 
         # Sanitize the demo screenshot: no local user paths in the repository.
-        app.query_one("#ref-path", Input).value = "audio/anna_06.ogg"
-        app.query_one("#ref-path", Input).cursor_position = len("audio/anna_06.ogg")
-        app.query_one("#ref-status", Static).update("✓ anna_06.ogg → WAV 16 kHz mono · 00:04.88")
+        demo_name = "voice.wav"
+        app.query_one("#ref-path", Input).value = f"audio/{demo_name}"
+        app.query_one("#ref-path", Input).cursor_position = len(f"audio/{demo_name}")
+        app.query_one("#ref-status", Static).update("✓ voice.wav → WAV 16 kHz mono · 00:04.88")
         app.query_one("#ref-status", Static).set_class(True, "ok")
         log = app.query_one("#log", RichLog)
         log.clear()
         app._log("SYS", "VoxCLode · VoxCPM2 voice studio")
-        app._log("INFO", "Эталон: audio/anna_06.ogg · 48 kHz · 4.88 c")
-        app._log("CMD", "ffmpeg … → .cache/converted/anna_06_16k.wav")
-        app._log("OK", "Эталон готов: anna_06.ogg → WAV 16 kHz mono · 4.88 c · 153 КБ")
+        app._log("INFO", "Эталон: audio/voice.wav · 48 kHz · 4.88 c")
+        app._log("CMD", "ffmpeg … → .cache/converted/voice_16k.wav")
+        app._log("OK", "Эталон готов: voice.wav → WAV 16 kHz mono · 4.88 c · 153 КБ")
         app._log("INFO", "▶ Генерация речи")
         app._log("INFO", "Загрузка модели VoxCPM2…")
         await pilot.pause()
