@@ -1,0 +1,39 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Environment
+.venv/
+venv/
+runtime/
+.cache/
+.env
+.env.*
+*.token
+secrets.*
+
+# Results and local media
+output/
+audio/*
+!audio/README.md
+!audio/reference_text_ru.txt
+
+# Internal PYNEON install artifacts
+meta.json
+docs/install-report.md
+docs/instructions-post.md
+docs/*.log
+docs/*.svg
+docs/*-crop.png
+docs/voxclode-preview[0-9]*.png
+docs/voxclode-preview-final.png
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/

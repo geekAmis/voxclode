@@ -1,0 +1,474 @@
+Screen {
+    background: #070b14;
+    color: #dbeafe;
+}
+
+/* ---------------------------------------------------------------- header */
+
+#header {
+    height: 7;
+    layout: horizontal;
+    padding: 0 1;
+    background: #0a1020;
+    border-bottom: solid #1e2d4a;
+}
+
+#logo {
+    width: 1fr;
+    content-align: left middle;
+}
+
+#compact-title {
+    display: none;
+    width: 1fr;
+    content-align: left middle;
+    color: #22d3ee;
+    text-style: bold;
+}
+
+#badges {
+    width: 26;
+    layout: vertical;
+    align: right middle;
+}
+
+.badge {
+    width: 100%;
+    height: 1;
+    text-align: right;
+    color: #64748b;
+}
+
+.badge-accent {
+    color: #a78bfa;
+    text-style: bold;
+}
+
+.badge-ok {
+    color: #34d399;
+    text-style: bold;
+}
+
+/* ------------------------------------------------------------------ main */
+
+#main {
+    height: 1fr;
+    layout: horizontal;
+}
+
+#sidebar {
+    width: 34;
+    border: round #22304d;
+    background: #0d1526;
+    padding: 0 1 1 1;
+    scrollbar-size-vertical: 1;
+}
+
+#workspace {
+    width: 1fr;
+    border: round #22304d;
+    background: #0d1526;
+    padding: 0 2 1 2;
+    scrollbar-size-vertical: 1;
+}
+
+.panel-title {
+    color: #67e8f9;
+    text-style: bold;
+    margin: 1 0 0 0;
+    height: 1;
+}
+
+.section {
+    color: #a78bfa;
+    text-style: bold;
+    margin: 1 0 0 0;
+    height: 1;
+}
+
+.tiny {
+    color: #64748b;
+    height: 1;
+}
+
+.warn {
+    color: #fbbf24;
+}
+
+.ok {
+    color: #34d399;
+}
+
+.err {
+    color: #fb7185;
+}
+
+.pending {
+    color: #fbbf24;
+}
+
+#ref-status {
+    height: auto;
+    color: #7c8db5;
+    margin: 0 0 0 0;
+}
+
+.hint {
+    color: #475569;
+    height: auto;
+    margin-top: 1;
+}
+
+.kbd {
+    color: #64748b;
+    content-align: left middle;
+    margin-left: 1;
+}
+
+/* --------------------------------------------------------------- controls */
+
+RadioSet {
+    background: #0a1222;
+    border: round #22304d;
+    padding: 0 1;
+    height: auto;
+    margin-top: 0;
+}
+
+RadioButton {
+    background: transparent;
+    color: #cbd5e1;
+}
+
+.toggle {
+    width: 9;
+    min-width: 9;
+    height: 1;
+    min-height: 1;
+    border: none;
+    padding: 0;
+    content-align: center middle;
+    text-style: bold;
+    background: #16213a;
+    color: #94a3b8;
+}
+
+.toggle.on {
+    background: #047857;
+    color: #ffffff;
+}
+
+.toggle:hover {
+    background: #1e2d4a;
+}
+
+.toggle.on:hover {
+    background: #059669;
+}
+
+.switch-row {
+    height: 1;
+    layout: horizontal;
+    margin-top: 0;
+}
+
+.opt-label {
+    width: 1fr;
+    content-align: left middle;
+    color: #cbd5e1;
+}
+
+Select {
+    width: 100%;
+    margin: 0;
+}
+
+Input {
+    height: 3;
+    border: tall #2a3a5c;
+    background: #0a1222;
+    color: #e2e8f0;
+}
+
+Input:focus {
+    border: tall #22d3ee;
+}
+
+TextArea {
+    background: #0a1222;
+    border: tall #2a3a5c;
+    color: #e2e8f0;
+}
+
+TextArea:focus {
+    border: tall #22d3ee;
+}
+
+#prompt {
+    height: 4;
+}
+
+#control {
+    height: 3;
+}
+
+.row {
+    height: 3;
+    layout: horizontal;
+    margin-top: 1;
+}
+
+.row Button {
+    margin-right: 1;
+}
+
+#action-bar {
+    height: 3;
+    layout: horizontal;
+    background: #0b1322;
+    border-top: solid #1e2d4a;
+    padding: 0 1;
+}
+
+#action-bar Button {
+    margin-right: 1;
+}
+
+#action-bar #device {
+    width: 12;
+    margin: 0 1 0 0;
+}
+
+#action-bar #steps {
+    width: 19;
+    margin: 0 1 0 0;
+}
+
+#action-bar .hint {
+    width: 1fr;
+    content-align: left middle;
+    margin-top: 0;
+    padding-left: 1;
+}
+
+Button {
+    min-width: 10;
+    height: 3;
+    border: tall #2a3a5c;
+    background: #16213a;
+    color: #cbd5e1;
+}
+
+Button:hover {
+    background: #1e2d4a;
+    border: tall #3b82f6;
+}
+
+Button.-primary {
+    background: #6d28d9;
+    border: tall #8b5cf6;
+    color: #ffffff;
+    text-style: bold;
+}
+
+Button.-success {
+    background: #047857;
+    border: tall #10b981;
+    color: #ffffff;
+    text-style: bold;
+}
+
+Button.-error {
+    background: #9f1239;
+    border: tall #e11d48;
+    color: #ffffff;
+    text-style: bold;
+}
+
+Button:disabled {
+    background: #111827;
+    border: tall #1f2937;
+    color: #475569;
+}
+
+/* --------------------------------------------------------------- progress */
+
+#progress-panel {
+    height: 9;
+    border: round #22304d;
+    background: #0b1322;
+    padding: 0 1;
+}
+
+#progress-head {
+    height: 1;
+    layout: horizontal;
+}
+
+#progress-head .panel-title {
+    width: 1fr;
+    margin: 0;
+}
+
+.stage-label {
+    width: auto;
+    color: #a78bfa;
+    text-align: right;
+}
+
+.bar-row {
+    height: 1;
+    layout: horizontal;
+}
+
+.bar-label {
+    width: 7;
+    color: #64748b;
+    content-align: left middle;
+}
+
+ProgressBar {
+    width: 1fr;
+    height: 1;
+}
+
+ProgressBar > Bar > .bar--bar {
+    color: #22d3ee;
+    background: #16213a;
+}
+
+ProgressBar > Bar > .bar--complete {
+    color: #34d399;
+    background: #16213a;
+}
+
+#log {
+    height: 1fr;
+    background: #070d18;
+    border: none;
+    padding: 0 1;
+    margin-top: 0;
+}
+
+/* ----------------------------------------------------------------- player */
+
+#player-panel {
+    display: none;
+    height: 9;
+    border: round #22d3ee;
+    background: #0a1424;
+    padding: 0 1;
+}
+
+#track-head {
+    height: 1;
+    layout: horizontal;
+}
+
+#track-head .panel-title {
+    width: auto;
+    margin: 0;
+    padding-right: 2;
+}
+
+#track-title {
+    width: 1fr;
+    text-align: right;
+    color: #e2e8f0;
+    text-overflow: ellipsis;
+}
+
+#waveform {
+    height: 2;
+    background: #070d18;
+    padding: 0 1;
+}
+
+#controls {
+    height: 3;
+    layout: horizontal;
+}
+
+#controls Button {
+    margin-right: 1;
+}
+
+#play-time {
+    width: auto;
+    content-align: left middle;
+    color: #a5b4fc;
+    padding: 0 1;
+}
+
+.prompt-line {
+    height: 1;
+    color: #64748b;
+    text-overflow: ellipsis;
+}
+
+/* ----------------------------------------------------------------- footer */
+
+Footer {
+    background: #0a1020;
+    color: #64748b;
+}
+
+/* ------------------------------------------------------------- file picker */
+
+FilePickerScreen {
+    align: center middle;
+    background: #000000 70%;
+}
+
+#picker {
+    width: 80;
+    height: 28;
+    border: round #22d3ee;
+    background: #0e1626;
+    padding: 1 2;
+}
+
+.picker-title {
+    color: #67e8f9;
+    text-style: bold;
+    height: 1;
+}
+
+#picker-tree {
+    height: 1fr;
+    background: #070d18;
+    border: round #22304d;
+    margin-top: 1;
+}
+
+.picker-actions {
+    height: 3;
+    layout: horizontal;
+    margin-top: 1;
+}
+
+/* ---------------------------------------------------------------- compact */
+
+.narrow #logo {
+    display: none;
+}
+
+.narrow #compact-title {
+    display: block;
+}
+
+.narrow #sidebar {
+    width: 30;
+}
+
+.short #logo {
+    display: none;
+}
+
+.short #compact-title {
+    display: block;
+}
+
+.short #header {
+    height: 3;
+}
