@@ -21,7 +21,15 @@ def main() -> int:
     print("project root:", root)
 
     ok = True
-    for dist in ("voxcpm", "torch", "torchaudio", "transformers", "soundfile"):
+    for dist in (
+        "voxcpm",
+        "torch",
+        "torchaudio",
+        "transformers",
+        "soundfile",
+        "textual",
+        "imageio-ffmpeg",
+    ):
         try:
             print(f"{dist:<12}:", md.version(dist))
         except md.PackageNotFoundError:
