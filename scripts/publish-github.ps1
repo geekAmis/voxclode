@@ -26,10 +26,9 @@ Write-Host "Пользователь: $owner"
 $body = @{
     name             = $RepoName
     description      = $Description
-    private          = [bool]$Private
-    has_issues       = $true
-    has_wiki         = $false
-    license_template = "mit"
+    private    = [bool]$Private
+    has_issues = $true
+    has_wiki   = $false
 } | ConvertTo-Json
 
 try {

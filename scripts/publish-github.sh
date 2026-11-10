@@ -30,7 +30,6 @@ print(json.dumps({
     "private": False,
     "has_issues": True,
     "has_wiki": False,
-    "license_template": "mit",
 }, ensure_ascii=False))
 PY
 )"
